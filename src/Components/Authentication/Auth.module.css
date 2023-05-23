@@ -1,0 +1,38 @@
+
+.container{
+    display: flex;
+    justify-content: center;
+}
+.box{
+    width: 30%;
+    margin:1rem;
+}
+.title{
+    text-align: center;
+    font-size: 2.25rem;
+}
+.submitbtn{
+    border-radius: 2rem;
+}
+.loginorsignup{
+    text-align: center;
+    border: 2px solid;
+    margin:  15px 0 10px 0;
+    /* background-color: aliceblue; */
+    font-size: 18px;
+    border-radius: 1rem;
+    padding: 5px 0;
+    width: 100%;
+    cursor: pointer;
+
+    background-color: transparent;
+    border: 1px solid #0d6efd;
+    color: #0d6efd;
+}
+.forgot{
+    justify-content: center;
+    display: flex;
+    text-decoration: none;
+    font-weight: 600;
+    cursor: pointer;
+}
