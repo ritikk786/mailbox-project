@@ -1,8 +1,12 @@
-import React, {  useRef, useState } from "react";
+import React, {  Fragment, useContext, useRef, useState } from "react";
 import { Button, FloatingLabel, Form, Spinner } from "react-bootstrap";
 import { Card } from "react-bootstrap";
 import Classes from './Auth.module.css'
 import { Route, Routes, useNavigate, Link } from "react-router-dom";
+import Header from "../Header/Header";
+import Context from "../../Store/mainStore";
+import { useDispatch } from "react-redux";
+import { loginhandlerActions } from "../../Store/login-slice";
 
 
 const AuthForm = () => {
@@ -10,9 +14,11 @@ const AuthForm = () => {
     const [passwordmatch, setPasswordmatch]=useState(false)
     const [spiner, setSpiner]=useState(false)
 
-    // const navigate = useNavigate();
+    const dispatch = useDispatch();
 
-    // const ctx = useContext(Context);
+    const navigate = useNavigate();
+
+    const ctx = useContext(Context);
 
     const emailvalue = useRef();
     const passwordvalue=useRef();
@@ -36,10 +42,10 @@ const AuthForm = () => {
         setSpiner(true)
         console.log('1')
         const email = emailvalue.current.value;
-        const password = confirmpasswordvalue.current.value;
+        const password = passwordvalue.current.value;
         try{
-            console.log('2')
-            if(passwordmatch){
+            console.log('2', emailvalue.current.value,passwordvalue.current.value,)
+           
 
                 if(isLogin){
                     const response = await fetch('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyARKjUtf5SXha7RRaBTIIcuDXuUnMlUw0c',{
@@ -58,12 +64,20 @@ const AuthForm = () => {
                         throw new Error(`${data.error.message}`)
                     }
                     console.log(data)
-                    // ctx.changeloginstate(data)
+                    dispatch(loginhandlerActions.loginmanagement({
+                        name : data.displayName || null,
+                        email : data.email,
+                        idToken: data.idToken,
+                    }))
+                    // ctx.loginhandler(data)
                     // clear value
-                    cleravalue()
-                    // navigate('/')
+                    emailvalue.current.value='';
+                    passwordvalue.current.value='';
+                    // cleravalue()
+                    navigate('/welcome/inbox')
                 }
                 else{
+                    if(passwordmatch){
                     const response = await fetch('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyARKjUtf5SXha7RRaBTIIcuDXuUnMlUw0c',{
                         method:'POST',
                         body: JSON.stringify({
@@ -85,11 +99,12 @@ const AuthForm = () => {
                     cleravalue()
                     alert('Congratulation')
                 }
+                else{
+                    alert('Password not match')
+                    // else condition
+                }
             }
-            else{
-                alert('Password not match')
-                // else condition
-            }
+            
         }
         catch(error){
             alert(error.message)
@@ -106,6 +121,8 @@ const AuthForm = () => {
 
 
     return (
+        <Fragment>
+            <Header/>
         <div className={Classes.container}>
             <div className={Classes.box}>
                 <Card className={`${Classes.card} shadow-lg`}>
@@ -126,13 +143,14 @@ const AuthForm = () => {
                             >
                                 <Form.Control type="password" placeholder="enter your password" ref={passwordvalue} required/>
                             </FloatingLabel>
-                            <FloatingLabel
+                            {!isLogin && <FloatingLabel
                                 controlId="floatingInput"
                                 label="Confirm Password"
                                 className="mb-3"
                             >
                                 <Form.Control type="password" ref={confirmpasswordvalue} placeholder="confirm your password" required onChange={matchpassword}/>
-                            </FloatingLabel>
+                            </FloatingLabel> }
+                            
                             <div className="d-grid gap-2">
                                 <Button variant="primary" className='mb-3' type="submit"  >
                                 {spiner && <Spinner animation="border" size="sm" />}
@@ -157,6 +175,7 @@ const AuthForm = () => {
                 </Card>
             </div>
         </div>
+        </Fragment>
     )
 }
 export default AuthForm;

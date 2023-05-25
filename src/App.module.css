@@ -1,0 +1,22 @@
+.parent {
+  display: block;
+  background: #F6DDCC;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+}
+.div1{
+  background: #FDF2E9;
+  display: inline-flex;
+  width: 20%;
+  margin: 1rem;
+  height: 90vh;
+  border-radius: 20px;
+}
+.div2{
+  background: #FDF2E9;
+  display: inline-flex;
+  width: 77%;
+  height: 90vh;
+  border-radius: 20px;
+}

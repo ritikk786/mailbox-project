@@ -1,0 +1,21 @@
+.main{
+    margin: 1rem;
+    width: 100%;
+}
+.form{
+    box-shadow: 2px 1px 16px 1px gray;
+    padding: 1rem;
+    background: white;
+}
+
+.form input{
+    border: none;
+    background-color: transparent;
+    border-bottom: 1px solid;
+    width: 100%;
+    margin-bottom: 1rem;
+    pointer-events: none;
+}
+.form input :focus{
+    border: none;
+}

@@ -3,15 +3,25 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter } from 'react-router-dom';
 
 import '../node_modules/react-bootstrap/dist/react-bootstrap.min.js'
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
+import { ContextProvider } from './Store/mainStore';
+import { Provider } from 'react-redux';
+import Store from './Store/redux-main';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <BrowserRouter>
+    <Provider store={Store}>
+    <ContextProvider>
     <App />
+    </ContextProvider>
+    </Provider>
+    </BrowserRouter>
   </React.StrictMode>
 );
 

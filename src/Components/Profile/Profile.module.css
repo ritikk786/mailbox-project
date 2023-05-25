@@ -1,0 +1,57 @@
+.signout{
+    position: fixed;
+    top: 86vh;
+    left: 29px;
+
+}
+.signout button{
+    border: none;
+    background: none;
+}
+.detail{
+    width: 100%;
+    /* margin: 1rem; */
+    background: #fbcfab;
+    border-radius: 20px 10px 0 0;
+    height: 8rem;
+    /* display: inline-block; */
+    /* display: inline-grid; */
+    padding-left: 1rem;
+    justify-content: center;
+}
+.detail span {
+    font-size: 1.5vw;
+
+}
+.image{
+    border-radius: 20px;
+    margin-top: 1rem;
+    width: 4em;
+    
+}
+.navbar ul{
+    list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  background-color: #f1f1f1;
+}
+.navbar ul li{
+    border-bottom:1px solid
+
+}
+.navbar ul li a {
+    display: block;
+  color: #000;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+.navbar ul li a:hover {
+    background-color: #555;
+    color: white;
+  }
+  .activate{
+    background-color: #04AA6D;
+    color: white;
+  }
+  
