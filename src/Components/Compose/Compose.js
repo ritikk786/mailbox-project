@@ -26,15 +26,19 @@ const Compose = ()=>{
             method : 'POST',
             body : JSON.stringify(sentmail)
         })
-        const Senderdata = Senderresponse.json();
-        console.log(Senderdata)
+        const Senderdata = await Senderresponse.json();
+        console.log(Senderdata,'senderdata')
 
         const Reciverresponse = await fetch(`https://mail-box-43616-default-rtdb.firebaseio.com/recive/${recevierEmail}.json`,{
             method : 'POST',
-            body : JSON.stringify(sentmail)
+            body : JSON.stringify({
+                from : senderEmail,
+                subject : Subject.current.value,
+                message : editor.current.value,
+            })
         })
-        const Reciverdata = Reciverresponse.json();
-        console.log(Reciverdata)
+        const Reciverdata = await Reciverresponse.json();
+        console.log(Reciverdata,'recieverdata')
     }
     return(
         <div className={Classes.main}>
@@ -45,7 +49,7 @@ const Compose = ()=>{
             <input type="text" placeholder="To:" ref={To} required/>
             <input type="text" placeholder="Subject:" ref={Subject} required/>
             <div>
-            <labe>Message:</labe>
+            <label>Message:</label>
             <JoditEditor
 			ref={editor}
 			value={content}

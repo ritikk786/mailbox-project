@@ -15,7 +15,7 @@ const Profile = () => {
             <div className={Classes.detail}>
                 <img src="https://banner2.cleanpng.com/20180329/zue/kisspng-computer-icons-user-profile-person-5abd85306ff7f7.0592226715223698404586.jpg"
                 className={Classes.image} /><br/>
-                <span>{name}</span>
+                <span>{email}</span>
                 
             </div>
             <section>
@@ -24,7 +24,7 @@ const Profile = () => {
                         <ul>
                             <li><NavLink  to='/welcome/compose'>Compose</NavLink></li>
                             <li><NavLink to='/welcome/inbox'>Inbox</NavLink></li>
-                            <li><NavLink to='/inbox'>Sentbox</NavLink></li>
+                            <li><NavLink to='/welcome/sentbox'>Sentbox</NavLink></li>
                             <li><NavLink to='/welcome/setting'>Setting</NavLink></li>
                         </ul>
                     </navbar>
