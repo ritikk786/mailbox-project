@@ -2,6 +2,7 @@ import React, { useEffect } from "react"
 import Classes from './Sentbox.module.css'
 import { useDispatch, useSelector } from "react-redux"
 import { sentItemAction } from "../../Store/sentItem-slice"
+import { Link } from "react-router-dom"
 
 const Sentbox = () => {
     const { islogin, email, idToken, name } = useSelector((state) => state.loginmanage)
@@ -64,9 +65,10 @@ const Sentbox = () => {
                 <ul style={{ padding: '0px' }}>
                     {sentItem.map((item) => (
                         <li>
+                            <Link to={`/welcome/sentbox/${item.id}`}>
                             <div>{item.to}</div>
                             <div>{item.subject}</div>
-
+                            </Link>
                             
                             <button onClick={()=>deleteSentmail(item.id)} className={Classes.deleteicon}><i class="material-icons" style={{fontSize:'1.3vw',color:'red'}}>delete</i></button>
                         </li>

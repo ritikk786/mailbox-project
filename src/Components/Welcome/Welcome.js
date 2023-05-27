@@ -8,6 +8,7 @@ import { Outlet, Route, Routes } from 'react-router-dom';
 import Compose from "../Compose/Compose";
 import Sentbox from "../Sentbox/Sentbox";
 import ViewMail from "../Inbox/ViewMail";
+import ViewSentmail from "../Sentbox/ViewSentmail";
 
 const Welcome = ()=>{
     return<div className={Classes.parent}>
@@ -20,6 +21,8 @@ const Welcome = ()=>{
                 <Route path="setting" element={<Setting />}/>
                 <Route path="compose" element={<Compose />}/>
                 <Route path="sentbox" element={<Sentbox />}/>
+                <Route path="sentbox/:id" element={<ViewSentmail />}/>
+                
                 {/* <Route path='*' element={<Inbox />} /> */}
             </Routes>
     <Outlet/>

@@ -15,6 +15,10 @@
     padding: 0;
 
 }
+.main a {
+    display: contents;
+    color: black;
+}
 
 .main li{
     list-style: none;
