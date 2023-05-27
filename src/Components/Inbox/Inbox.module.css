@@ -1,9 +1,19 @@
 .main{
     margin: 1rem;
     width: 100%;
+    overflow: scroll;
 }
-.mail ul{
-    
+.heading{
+    position: sticky;
+    top: 0;
+    left: 0;
+    background: #FDF2E9;;
+}
+.main h3{
+    font-size: 2vw;
+}
+.ul{
+    font-size: 1.5vw;
     padding: 0;
 
 }
@@ -17,5 +27,27 @@
     padding: 0.3em;
     display: flex;
     justify-content: space-between;
+    align-items: baseline;
+    cursor: pointer;
+}
+.main li a{
+    list-style: none;
+
+   
+    color: black;
+    font-weight: 600;
+
+    cursor: pointer;
     
+}
+.deleteicon{
+    border: none;
+    background: none;
+}
+.openmail{
+
+    display: flex;
+    justify-content: space-between;
+    width: 96%;
+    padding-right: 15em;
 }

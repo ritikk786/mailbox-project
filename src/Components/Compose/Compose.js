@@ -5,6 +5,7 @@ import JoditEditor from 'jodit-react';
 import { Button } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 const Compose = ()=>{
+    console.log('Compose Component')
     const {islogin, email, idToken, name} = useSelector((state)=>state.loginmanage)
     const To = useRef();
     const Subject = useRef();
@@ -32,13 +33,21 @@ const Compose = ()=>{
         const Reciverresponse = await fetch(`https://mail-box-43616-default-rtdb.firebaseio.com/recive/${recevierEmail}.json`,{
             method : 'POST',
             body : JSON.stringify({
-                from : senderEmail,
+                from : email,
                 subject : Subject.current.value,
                 message : editor.current.value,
+                isread : false,
+                date :  Date(),
             })
         })
         const Reciverdata = await Reciverresponse.json();
         console.log(Reciverdata,'recieverdata')
+
+        //clera value 
+        To.current.value='';
+        Subject.current.value='';
+        // editor.current.value='';
+        setContent('')
     }
     return(
         <div className={Classes.main}>
@@ -46,7 +55,7 @@ const Compose = ()=>{
         <hr/>
         <form className={Classes.form} onSubmit={submithandler}>
             
-            <input type="text" placeholder="To:" ref={To} required/>
+            <input type="email" placeholder="To:"  ref={To} required/>
             <input type="text" placeholder="Subject:" ref={Subject} required/>
             <div>
             <label>Message:</label>

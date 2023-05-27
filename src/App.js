@@ -9,22 +9,25 @@ import Profile from './Components/Profile/Profile';
 import Context from './Store/mainStore';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginhandlerActions } from './Store/login-slice';
+import { receiveItemAction } from './Store/receiveItem-slice';
 
 
 function App() {
-  const ctx = useContext(Context)
+
   const {islogin, email, idToken, name} = useSelector((state)=>state.loginmanage)
+  console.log(email)
+
+  
   const dispatch = useDispatch();
   console.log(islogin, email,idToken,name)
   // const navigate =useNavigate();
-  
-
+  console.log('app component',email)
+ 
 
   useEffect(()=>{
     const userStoredEmail=localStorage.getItem('email')
-    const userStoredidToken = localStorage.getItem('idToken')
-    const userStoredName = localStorage.getItem('name')
-
+  const userStoredidToken = localStorage.getItem('idToken')
+  const userStoredName = localStorage.getItem('name')
     if(userStoredidToken){
 
       dispatch(loginhandlerActions.loginmanagement({
@@ -33,7 +36,39 @@ function App() {
         idToken: userStoredidToken,
     }))
     }
-  },[dispatch])
+  },[])
+
+
+  useEffect(()=>{
+    const getmail = async ()=>{
+      try{
+        let myEmail = email.replace('@','').replace('.','')
+        console.log(myEmail)
+        const response = await fetch(`https://mail-box-43616-default-rtdb.firebaseio.com/recive/${myEmail}.json`)
+        if(!response.ok){
+          throw new Error('Check you network connectivity')
+        }
+        const data =await response.json()
+
+        console.log(data)
+        const newData = [];
+        for(let key in data){
+            newData.push({id:key, ...data[key]})
+        }
+        console.log(newData)
+        dispatch(receiveItemAction.addtoInbox(newData))
+      }
+      catch(error){
+        alert(error.message)
+      }
+    }
+    
+if(email){
+console.log('yes',email)
+  getmail()
+}
+    
+},[dispatch,email])
 
   useEffect(()=>{
     if(islogin){
@@ -47,6 +82,9 @@ function App() {
       localStorage.clear()
     }
   },[email, idToken])
+
+
+ 
   return (
    
 
@@ -54,7 +92,7 @@ function App() {
   
     <Routes>
      <Route path='/' element={!islogin ? <AuthForm/> : <Navigate to='/welcome/compose'/>}/>
-      <Route path='welcome/*' element={!islogin ? <AuthForm/> : <Welcome/>}/>
+      <Route path='/welcome/*' element={!islogin ? <AuthForm/> : <Welcome/>}/>
     </Routes>
     
    </Fragment>

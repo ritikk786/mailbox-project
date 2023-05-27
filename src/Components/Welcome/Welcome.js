@@ -7,6 +7,7 @@ import Setting from "../Setting/Setting";
 import { Outlet, Route, Routes } from 'react-router-dom';
 import Compose from "../Compose/Compose";
 import Sentbox from "../Sentbox/Sentbox";
+import ViewMail from "../Inbox/ViewMail";
 
 const Welcome = ()=>{
     return<div className={Classes.parent}>
@@ -15,6 +16,7 @@ const Welcome = ()=>{
         <Routes>
                 <Route index element={<Compose/>}/>
                 <Route path="inbox" element={<Inbox />}/>
+                <Route path="inbox/:id" element={<ViewMail />}/>
                 <Route path="setting" element={<Setting />}/>
                 <Route path="compose" element={<Compose />}/>
                 <Route path="sentbox" element={<Sentbox />}/>

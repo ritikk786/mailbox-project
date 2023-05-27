@@ -7,6 +7,7 @@ const initailloginState = {
     email : null,
     idToken : null,
     name : null,
+    
 }
 
 export const loginhandler = createSlice({
@@ -14,7 +15,7 @@ export const loginhandler = createSlice({
     initialState : initailloginState,
     reducers :{
         loginmanagement (state,action){
-            console.log(action)
+            console.log(action,'inloginmanagement')
             state.islogin = true
             state.email = action.payload.email
             state.idToken = action.payload.idToken
@@ -27,7 +28,7 @@ export const loginhandler = createSlice({
             state.email = null
             state.idToken =null
             state.name = null
-
+            
         }
     }
 })

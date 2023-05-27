@@ -1,12 +1,21 @@
 .main{
     margin: 1rem;
     width: 100%;
+    overflow: scroll;
+}
+.heading{
+        position: sticky;
+        top: 0;
+        left: 0;
+        background: #FDF2E9;;
+    
 }
 .mail ul{
     
     padding: 0;
 
 }
+
 .main li{
     list-style: none;
     background: #e9cdc4;
@@ -18,4 +27,9 @@
     display: flex;
     justify-content: space-between;
     
+}
+
+.deleteicon{
+    border: none;
+    background: none;
 }

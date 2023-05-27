@@ -30,6 +30,7 @@
     
 }
 .navbar ul{
+    font-size: 1.2vw;
     list-style-type: none;
   margin: 0;
   padding: 0;
@@ -39,6 +40,12 @@
 .navbar ul li{
     border-bottom:1px solid
 
+}
+.badge{
+    float: right;
+}
+.badge:hover{
+    background-color: blue;
 }
 .navbar ul li a {
     display: block;
@@ -50,7 +57,7 @@
     background-color: #555;
     color: white;
   }
-  .activate{
+.activate{
     background-color: #04AA6D;
     color: white;
   }
