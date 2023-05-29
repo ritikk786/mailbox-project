@@ -2,8 +2,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import Classes from './ViewMail.module.css'
 import { useEffect } from "react";
+
 import { receiveItemAction } from "../../Store/receiveItem-slice";
+import useHook from "../../CustomHook/usehttpHook";
+
+
 const ViewMail = () => {
+    const {sendRequest} = useHook();
+
     const { islogin, email, idToken, name } = useSelector((state) => state.loginmanage)
     console.log(email)
     let myEmail = email.replace('@', '').replace('.', '')
@@ -25,16 +31,26 @@ const ViewMail = () => {
     console.log(viewmail, 'hello view')
 
     useEffect(() => {
-        const updateReadstate = async () => {
-            const response = await fetch(`https://mail-box-43616-default-rtdb.firebaseio.com/recive/${myEmail}/${viewmail.id}.json`, {
-                method: 'PUT',
-                body: JSON.stringify({
-                    ...viewmail,
-                    isread: true,
-                })
-            })
-            const data = await response.json()
-            console.log(data)
+        const newMail ={
+            ...viewmail,
+            isread: true,
+        }
+
+        sendRequest({
+            url : `https://mail-box-43616-default-rtdb.firebaseio.com/recive/${myEmail}/${viewmail.id}.json`,
+            method : 'PUT',
+            body : newMail,
+        })
+      
+            // const response = await fetch(`https://mail-box-43616-default-rtdb.firebaseio.com/recive/${myEmail}/${viewmail.id}.json`, {
+            //     method: 'PUT',
+            //     body: JSON.stringify({
+            //         ...viewmail,
+            //         isread: true,
+            //     })
+            // })
+            // const data = await response.json()
+            // console.log(data)
 
             const logicmail = receiveItem.findIndex((item) =>
                 item.id === param.id
@@ -49,8 +65,7 @@ const ViewMail = () => {
             dispatch(receiveItemAction.addtoInbox(newData))
             // dispatch(receiveItemAction.re)
             console.log('put data')
-        }
-        updateReadstate()
+        
 
     }, [])
 if(viewmail){

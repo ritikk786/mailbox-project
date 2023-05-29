@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { sentItemAction } from "../../Store/sentItem-slice"
 import { receiveItemAction } from "../../Store/receiveItem-slice"
 import { Link, Navigate } from "react-router-dom"
+import useHook from "../../CustomHook/usehttpHook";
 
 const Inbox = ()=>{
     const {islogin, email, idToken, name} = useSelector((state)=>state.loginmanage)
@@ -15,6 +16,7 @@ const Inbox = ()=>{
     // const navigate = Navigate()
     let myEmail = email.replace('@','').replace('.','')
     let deletebtnState = false;
+    const {sendRequest}  = useHook();
     // useEffect(()=>{
     //     const getmail = async ()=>{
     //         console.log(myEmail)
@@ -36,13 +38,16 @@ const Inbox = ()=>{
             console.log('onListITem')
         }
     }
-    const deletefunction=(item)=>{
+    const deletefunction= async (item)=>{
         deletebtnState = true;
         console.log('deletebtn',item)
         deletebtnState = false;
-        const response = fetch(`https://mail-box-43616-default-rtdb.firebaseio.com/recive/${myEmail}/${item.id}.json`,{
-            method : 'DELETE',
+         sendRequest({
+            url : `https://mail-box-43616-default-rtdb.firebaseio.com/recive/${myEmail}/${item.id}.json`,
         })
+        // const response = fetch(`https://mail-box-43616-default-rtdb.firebaseio.com/recive/${myEmail}/${item.id}.json`,{
+        //     method : 'DELETE',
+        // })
         const newData = receiveItem.filter((mails)=>
             mails.id !== item.id
             )

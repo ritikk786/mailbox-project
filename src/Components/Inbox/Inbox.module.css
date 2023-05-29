@@ -51,3 +51,11 @@
     width: 96%;
     padding-right: 15em;
 }
+.main a {
+    display: contents;
+    color: black;
+}
+.main a:hover{
+    display: contents;
+    color: blue;
+}

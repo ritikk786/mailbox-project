@@ -33,6 +33,7 @@ const Profile = () => {
             <section>
                 <header>
                     <navbar className={Classes.navbar}>
+                       
                         <ul>
                             <li><NavLink  to='/welcome/compose'>Compose</NavLink></li>
                             <li><NavLink to='/welcome/inbox'>Inbox

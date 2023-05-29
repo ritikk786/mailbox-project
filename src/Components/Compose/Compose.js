@@ -1,6 +1,6 @@
 import React, { useState, useRef, useMemo } from 'react';
 import Classes from './Compose.module.css'
-
+import useHook from '../../CustomHook/usehttpHook';
 import JoditEditor from 'jodit-react';
 import { Button } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
@@ -12,6 +12,8 @@ const Compose = ()=>{
     const editor = useRef(null)
     const [content, setContent]=useState('')
 
+    const {sendRequest} = useHook();
+
     const submithandler= async (event)=>{
         event.preventDefault();
         console.log(To.current.value,Subject.current.value,editor.current.value,content)
@@ -22,26 +24,26 @@ const Compose = ()=>{
             subject : Subject.current.value,
             message : editor.current.value,
         }
+        const receivemail = {
+            from : email,
+            subject : Subject.current.value,
+            message : editor.current.value,
+            isread : false,
+            date :  Date(),
+        }
+        const first = await sendRequest({
+            url : `https://mail-box-43616-default-rtdb.firebaseio.com/sent/${senderEmail}.json`,
+            method : 'POST',
+            body : sentmail
+        })
        
-        const Senderresponse = await fetch(`https://mail-box-43616-default-rtdb.firebaseio.com/sent/${senderEmail}.json`,{
-            method : 'POST',
-            body : JSON.stringify(sentmail)
-        })
-        const Senderdata = await Senderresponse.json();
-        console.log(Senderdata,'senderdata')
 
-        const Reciverresponse = await fetch(`https://mail-box-43616-default-rtdb.firebaseio.com/recive/${recevierEmail}.json`,{
+        const second = await sendRequest({
+            url : `https://mail-box-43616-default-rtdb.firebaseio.com/recive/${recevierEmail}.json`,
             method : 'POST',
-            body : JSON.stringify({
-                from : email,
-                subject : Subject.current.value,
-                message : editor.current.value,
-                isread : false,
-                date :  Date(),
-            })
+            body : receivemail,
         })
-        const Reciverdata = await Reciverresponse.json();
-        console.log(Reciverdata,'recieverdata')
+        
 
         //clera value 
         To.current.value='';
@@ -51,13 +53,15 @@ const Compose = ()=>{
     }
     return(
         <div className={Classes.main}>
+            <div className={Classes.heading}>
             <h3>Compose</h3>
         <hr/>
+        </div>
         <form className={Classes.form} onSubmit={submithandler}>
             
             <input type="email" placeholder="To:"  ref={To} required/>
             <input type="text" placeholder="Subject:" ref={Subject} required/>
-            <div>
+            <div className={Classes.editor}>
             <label>Message:</label>
             <JoditEditor
 			ref={editor}
@@ -68,7 +72,7 @@ const Compose = ()=>{
 			onChange={newContent => setContent(newContent)}
 		/>
         </div>
-        <Button type='submit' className='mt-2'>Submit</Button>
+        <button className={Classes.button} type='submit' >Submit</button>
         </form>
         </div>
     )

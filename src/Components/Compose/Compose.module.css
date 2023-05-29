@@ -1,13 +1,37 @@
 .main{
     margin: 1rem;
     width: 100%;
+    overflow: scroll;
+    font-size: 1.3vw
+}
+.heading{
+    position: sticky;
+    top: 0;
+    left: 0;
+    background: #FDF2E9;
 }
 .form{
-    box-shadow: 2px 1px 16px 1px gray;
+    /* box-shadow: 2px 1px 16px 1px gray; */
+    border-radius: 8px;
     padding: 1rem;
     background: white;
 }
+.form #jodit-react-container{
+    background-color: black;
+}
 
+.button{
+    border: none;
+    background: #542702;
+    color: white;
+    padding: 0.5rem;
+    border-radius: 8px;
+    margin-top : 0.4rem
+}
+.form textarea{
+    height: 40vh;
+    background-color: black;
+}
 .form input{
     border: none;
     background-color: transparent;
@@ -19,3 +43,9 @@
 .form input :focus{
     border: none;
 }
+#editor .jodit-container {
+    background-color: #f1f1f1;
+    border: 1px solid #ddd;
+    padding: 10px;
+  }
+  

@@ -53,12 +53,19 @@
   padding: 8px 16px;
   text-decoration: none;
 }
-.navbar ul li a:hover {
+.navbar ul li a:hover{
     background-color: #555;
     color: white;
   }
-.activate{
-    background-color: #04AA6D;
-    color: white;
+
+
+  .checkbtn{
+    font-size: 30px;
+    color: black;
+    float: left;
+    line-height: 80px;
+    margin-right: 40px;
   }
-  
+  .checkinput{
+    display: none;
+  }

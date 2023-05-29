@@ -3,6 +3,7 @@ import Classes from './Sentbox.module.css'
 import { useDispatch, useSelector } from "react-redux"
 import { sentItemAction } from "../../Store/sentItem-slice"
 import { Link } from "react-router-dom"
+import useHook from "../../CustomHook/usehttpHook"
 
 const Sentbox = () => {
     const { islogin, email, idToken, name } = useSelector((state) => state.loginmanage)
@@ -10,49 +11,50 @@ const Sentbox = () => {
     console.log('sentmaildata', sentItem)
     const dispatch = useDispatch()
     let myEmail = email.replace('@', '').replace('.', '')
-
+    const {sendRequest} = useHook();
     useEffect(() => {
-        const getSentmail = async () => {
-            try{
-                const response = await fetch(`https://mail-box-43616-default-rtdb.firebaseio.com/sent/${myEmail}.json`)
-                if(!response.ok){
-                    throw new Error('Check you network connectivity')
+              const tranformdata = (data)=>{
+                    const newData = [];
+                    for (let key in data) {
+                        newData.push({ id: key, ...data[key] })
+                    }
+                    dispatch(sentItemAction.addtoSentbox(newData))
                 }
-                const data = await response.json()
-                console.log(data)
-                const newData = [];
-                for (let key in data) {
-                    newData.push({ id: key, ...data[key] })
-                }
-                console.log(newData)
-                dispatch(sentItemAction.addtoSentbox(newData))
-            }
-            catch(error){
-                alert(error.message)
-            }
-           
-        }
-        getSentmail()
+                sendRequest({
+                    url : `https://mail-box-43616-default-rtdb.firebaseio.com/sent/${myEmail}.json`
+                },tranformdata)
+            //     const response = await fetch(`https://mail-box-43616-default-rtdb.firebaseio.com/sent/${myEmail}.json`)
+            //     if(!response.ok){
+            //         throw new Error('Check you network connectivity')
+            //     }
+            //     const data = await response.json()
+            //     console.log(data)
+            //     const newData = [];
+            //     for (let key in data) {
+            //         newData.push({ id: key, ...data[key] })
+            //     }
+            //     console.log(newData)
+            //     dispatch(sentItemAction.addtoSentbox(newData))
     }, [])
 
-    const deleteSentmail= async(id)=>{
-        try{
-            const response = await fetch(`https://mail-box-43616-default-rtdb.firebaseio.com/sent/${myEmail}/${id}.json`,{
-                method : 'DELETE'
+    const deleteSentmail= (id)=>{
+
+            sendRequest({
+                url : `https://mail-box-43616-default-rtdb.firebaseio.com/sent/${myEmail}/${id}.json`,
             })
-            if(!response.ok){
-                throw new Error('Check you network connectivity')
-            }
-            const data = await response.json();
-            console.log(data)
+            // const response = await fetch(`https://mail-box-43616-default-rtdb.firebaseio.com/sent/${myEmail}/${id}.json`,{
+            //     method : 'DELETE'
+            // })
+
+            // if(!response.ok){
+            //     throw new Error('Check you network connectivity')
+            // }
+            // const data = await response.json();
+            // console.log(data)
             const newData = sentItem.filter((item)=>
                 item.id !==id
             )
             dispatch(sentItemAction.addtoSentbox(newData))
-        }
-        catch(error){
-            alert(error.message)
-        }
     }
 
     return (
