@@ -47,7 +47,7 @@ const NavModal = (props)=>{
                             <Badge className={Classes.badge} bg="secondary">{totalunreadmsg}</Badge>
                             </NavLink></li>
                             <li><NavLink to='/welcome/sentbox'>Sentbox</NavLink></li>
-                            <li><NavLink to='/welcome/setting'>Setting</NavLink></li>
+                            {/* <li><NavLink to='/welcome/setting'>Setting</NavLink></li> */}
                         </ul>
                     </navbar>
                    
@@ -56,7 +56,7 @@ const NavModal = (props)=>{
             <div className={Classes.signout} >
                 <button onClick={logout}>
                 <span>
-                    <i className="fa fa-sign-out" style={{ fontSize: "2vw" }}></i>
+                    <i className="fa fa-sign-out" style={{ fontSize: "0.9rem" }}></i>
                     <span>Sign Out</span>
                 </span>
                 </button>

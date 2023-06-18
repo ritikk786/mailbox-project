@@ -1,13 +1,16 @@
 .signout{
     position: absolute;
-    font-size: 2vw;
+    font-size: 0.9rem;
     top: 86vh;
-    left: 29px;
+    /* left: 29px; */
 
 }
 .signout button{
     border: none;
     background: none;
+}
+.signout span{
+    font-size: 0.9rem;
 }
 .backbtn{
     font-size: 2vw;
@@ -15,7 +18,7 @@
     background-color: transparent;
     border: none;
     float: right;
-    margin: 1rem;
+    margin-bottom: 0;
     cursor: pointer;
 }
 .detail{
@@ -30,7 +33,7 @@
     justify-content: center;
 }
 .detail span {
-    font-size: 1.5vw;
+    font-size: 0.7rem;
 
 }
 .image{
@@ -40,7 +43,7 @@
     
 }
 .navbar ul{
-    font-size: 1.2vw;
+    font-size: 0.7rem;
     list-style-type: none;
   margin: 0;
   padding: 0;
