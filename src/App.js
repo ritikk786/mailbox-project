@@ -4,7 +4,7 @@ import AuthForm from './Components/Authentication/Auth';
 import Header from './Components/Header/Header'
 import Welcome from './Components/Welcome/Welcome';
 import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
-import Classes from './App.module.css'
+
 import Profile from './Components/Profile/Profile';
 import Context from './Store/mainStore';
 import { useDispatch, useSelector } from 'react-redux';

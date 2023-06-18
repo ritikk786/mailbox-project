@@ -125,7 +125,7 @@ const AuthForm = () => {
             <Header/>
         <div className={Classes.container}>
             <div className={Classes.box}>
-                <Card className={`${Classes.card} shadow-lg`}>
+                <Card className='shadow-lg' style={{backgroundColor: '#fbece1'}}>
                     <Card.Body>
                         <Card.Title className={Classes.title}><h2>{isLogin ? 'Login' : 'Signup'}</h2></Card.Title>
                         <form onSubmit={submithandler}>

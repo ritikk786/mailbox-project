@@ -30,20 +30,26 @@
     margin-left: 20px;
 }
 .center input{
-    /* display: none */
+    display: none
 }
-/* @media (max-width: 858px){
+@media (max-width: 858px){
     .div1{
-        display: block;
-        height: 20vh;
+        display: none;
+      
+    }
+    /* .parent{
+        display: contents;
+    } */
+    .div2{
         width: 100vw;
     }
-    .parent{
-        display: contents;
-    }
-    .div2{
-        width: auto
+    .center{
+        display: block;
+        background: #F6DDCC;
+        position: sticky;
+        top: 0;
+        left: 0;
     }
   
    
-} */
+}

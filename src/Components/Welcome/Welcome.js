@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Classes from './Welcome.module.css'
 import Profile from "../Profile/Profile";
 import Routesfile from '../Routes/Routesfile'
@@ -9,18 +9,27 @@ import Compose from "../Compose/Compose";
 import Sentbox from "../Sentbox/Sentbox";
 import ViewMail from "../Inbox/ViewMail";
 import ViewSentmail from "../Sentbox/ViewSentmail";
+import NavModal from "./NavModal";
 
 const Welcome = () => {
+    const [nav, setNav ]= useState(false);
+
+    const shownav = ()=>{
+        setNav((prevnav)=>!prevnav)
+        console.log('hello')
+    }
+
     return (
 <>
             <div className={Classes.center}>
-                <input type="checkbox" id="check"/>
-                <label htmlFor="check" c>
+                
+                <label htmlFor="check" onClick={shownav}>
                 <i className="fa fa-bars"></i>
                 </label>
                 
                <h3 > Mail Box </h3>
             </div>
+            {nav && <NavModal onClick={shownav}/>}
         <div className={Classes.parent}>
             <div className={Classes.div1}><Profile /></div>
             
