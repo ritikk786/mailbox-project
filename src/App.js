@@ -95,7 +95,7 @@ function App() {
         }
   
         sendRequest({
-          url : `https://mail-box-43616-default-rtdb.firebaseio.com/recive/${myEmail}.json`
+          url : `https://mail-box-july-default-rtdb.firebaseio.com/recive/${myEmail}.json`
         },
         tranformdata)
       }

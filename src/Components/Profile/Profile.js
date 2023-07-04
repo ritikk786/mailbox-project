@@ -49,7 +49,7 @@ const Profile = () => {
             <div className={Classes.signout} >
                 <button onClick={logout}>
                 <span>
-                    <i className="fa fa-sign-out" style={{ fontSize: "0.9rem" }}></i>
+                    <i className="fa fa-sign-out" style={{ fontSize: "1rem" }}></i>
                     <span>Sign Out</span>
                 </span>
                 </button>

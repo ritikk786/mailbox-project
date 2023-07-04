@@ -2,20 +2,22 @@ import React, { useState, useRef, useMemo } from 'react';
 import Classes from './Compose.module.css'
 import useHook from '../../CustomHook/usehttpHook';
 import JoditEditor from 'jodit-react';
-import { Button } from 'react-bootstrap';
+import { Button, Spinner } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 const Compose = ()=>{
     console.log('Compose Component')
     const {islogin, email, idToken, name} = useSelector((state)=>state.loginmanage)
     const To = useRef();
     const Subject = useRef();
-    const editor = useRef(null)
+    const editor = useRef(null);
+    const [loading, setLoading] = useState(false)
     const [content, setContent]=useState('')
 
     const {sendRequest} = useHook();
 
     const submithandler= async (event)=>{
         event.preventDefault();
+        setLoading(true)
         console.log(To.current.value,Subject.current.value,editor.current.value,content)
         const recevierEmail = To.current.value.replace('@','').replace('.','')
         const senderEmail = email.replace('@','').replace('.','');
@@ -32,14 +34,14 @@ const Compose = ()=>{
             date :  Date(),
         }
         const first = await sendRequest({
-            url : `https://mail-box-43616-default-rtdb.firebaseio.com/sent/${senderEmail}.json`,
+            url : `https://mail-box-july-default-rtdb.firebaseio.com/sent/${senderEmail}.json`,
             method : 'POST',
             body : sentmail
         })
        
 
         const second = await sendRequest({
-            url : `https://mail-box-43616-default-rtdb.firebaseio.com/recive/${recevierEmail}.json`,
+            url : `https://mail-box-july-default-rtdb.firebaseio.com/recive/${recevierEmail}.json`,
             method : 'POST',
             body : receivemail,
         })
@@ -50,6 +52,7 @@ const Compose = ()=>{
         Subject.current.value='';
         // editor.current.value='';
         setContent('')
+        setLoading(false)
     }
     return(
         <div className={Classes.main}>
@@ -72,7 +75,10 @@ const Compose = ()=>{
 			onChange={newContent => setContent(newContent)}
 		/>
         </div>
-        <button className={Classes.button} type='submit' >Submit</button>
+        <button className={Classes.button} type='submit' >
+            {loading && <Spinner animation="border" size="sm"/>}
+            {!loading && 'Submit'}
+            </button>
         </form>
         </div>
     )

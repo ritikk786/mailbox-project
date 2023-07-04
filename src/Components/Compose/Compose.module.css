@@ -24,6 +24,7 @@
     border: none;
     background: #542702;
     color: white;
+    min-width: 6rem;
     padding: 0.5rem;
     border-radius: 8px;
     margin-top : 0.4rem

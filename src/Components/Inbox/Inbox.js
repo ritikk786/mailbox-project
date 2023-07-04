@@ -43,7 +43,7 @@ const Inbox = ()=>{
         console.log('deletebtn',item)
         deletebtnState = false;
          sendRequest({
-            url : `https://mail-box-43616-default-rtdb.firebaseio.com/recive/${myEmail}/${item.id}.json`,
+            url : `https://mail-box-july-default-rtdb.firebaseio.com/recive/${myEmail}/${item.id}.json`,
         })
         // const response = fetch(`https://mail-box-43616-default-rtdb.firebaseio.com/recive/${myEmail}/${item.id}.json`,{
         //     method : 'DELETE',

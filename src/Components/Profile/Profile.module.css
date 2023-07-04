@@ -23,7 +23,8 @@
     justify-content: center;
 }
 .detail span {
-    font-size: 0.7rem;
+    position: absolute;
+    font-size: 1em;
 
 }
 .image{
@@ -33,7 +34,7 @@
     
 }
 .navbar ul{
-    font-size:0.7rem;
+    font-size:1rem;
     list-style-type: none;
   margin: 0;
   padding: 0;

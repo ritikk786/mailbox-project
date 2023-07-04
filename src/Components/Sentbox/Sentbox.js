@@ -21,7 +21,7 @@ const Sentbox = () => {
                     dispatch(sentItemAction.addtoSentbox(newData))
                 }
                 sendRequest({
-                    url : `https://mail-box-43616-default-rtdb.firebaseio.com/sent/${myEmail}.json`
+                    url : `https://mail-box-july-default-rtdb.firebaseio.com/sent/${myEmail}.json`
                 },tranformdata)
             //     const response = await fetch(`https://mail-box-43616-default-rtdb.firebaseio.com/sent/${myEmail}.json`)
             //     if(!response.ok){
@@ -40,7 +40,7 @@ const Sentbox = () => {
     const deleteSentmail= (id)=>{
 
             sendRequest({
-                url : `https://mail-box-43616-default-rtdb.firebaseio.com/sent/${myEmail}/${id}.json`,
+                url : `https://mail-box-july-default-rtdb.firebaseio.com/sent/${myEmail}/${id}.json`,
             })
             // const response = await fetch(`https://mail-box-43616-default-rtdb.firebaseio.com/sent/${myEmail}/${id}.json`,{
             //     method : 'DELETE'

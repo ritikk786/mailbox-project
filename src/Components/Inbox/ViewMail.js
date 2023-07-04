@@ -37,7 +37,7 @@ const ViewMail = () => {
         }
 
         sendRequest({
-            url : `https://mail-box-43616-default-rtdb.firebaseio.com/recive/${myEmail}/${viewmail.id}.json`,
+            url : `https://mail-box-july-default-rtdb.firebaseio.com/recive/${myEmail}/${viewmail.id}.json`,
             method : 'PUT',
             body : newMail,
         })
